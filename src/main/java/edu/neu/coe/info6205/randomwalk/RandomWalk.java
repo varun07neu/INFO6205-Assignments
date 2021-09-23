@@ -20,7 +20,10 @@ public class RandomWalk {
      * @param dy the distance he moves in the y direction
      */
     private void move(int dx, int dy) {
-        // TO BE IMPLEMENTED
+//        System.out.println("in move start  "+ dx + "  "+ dy);
+        x+=dx;
+        y+=dy;
+//        System.out.println("in move fin  "+ x + "  "+ y);
     }
 
     /**
@@ -29,7 +32,9 @@ public class RandomWalk {
      * @param m the number of steps the drunkard takes
      */
     private void randomWalk(int m) {
-        // TO BE IMPLEMENTED
+        for(int i=0; i<m; i++){
+            randomMove();
+        }
     }
 
     /**
@@ -48,8 +53,8 @@ public class RandomWalk {
      * @return the (Euclidean) distance from the origin to the current position.
      */
     public double distance() {
-        // TO BE IMPLEMENTED
-        return 0;
+        // distance b/w the lamp post and the current position of the drunkard is derived as d^2 = (x^2 + y^2) which is the Pythogarean theorem
+        return Math.sqrt ((x*x)+(y*y));
     }
 
     /**
@@ -64,6 +69,7 @@ public class RandomWalk {
         for (int i = 0; i < n; i++) {
             RandomWalk walk = new RandomWalk();
             walk.randomWalk(m);
+//            System.out.println("randomwalk distance "+ walk.distance() );
             totalDistance = totalDistance + walk.distance();
         }
         return totalDistance / n;
