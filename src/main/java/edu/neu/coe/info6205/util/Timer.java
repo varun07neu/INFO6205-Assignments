@@ -56,12 +56,12 @@ public class Timer {
         logger.trace("repeat: with " + n + " runs");
         pause();
         for(int i = 0; i < n; i++){
-
+            T tValue = supplier.get();
             if(preFunction!=null) {
-                preFunction.apply(supplier.get());
+                preFunction.apply(tValue);
             }
             resume();
-            U t = function.apply(supplier.get());
+            U t = function.apply(tValue);
             pauseAndLap();
             if (postFunction!=null){
                 postFunction.accept(t);
@@ -70,7 +70,6 @@ public class Timer {
         }
         double meanTime = meanLapTime();
         resume();
-        // TO BE IMPLEMENTED: note that the timer is running when this method is called and should still be running when it returns.
         return meanTime;
     }
 
