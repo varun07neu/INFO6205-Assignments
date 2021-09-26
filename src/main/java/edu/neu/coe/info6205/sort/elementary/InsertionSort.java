@@ -70,7 +70,6 @@ public class InsertionSort<X extends Comparable<X>> extends SortWithHelper<X> {
 
             }
         }
-        // TO BE IMPLEMENTED
     }
 
     public static final String DESCRIPTION = "Insertion sort";
