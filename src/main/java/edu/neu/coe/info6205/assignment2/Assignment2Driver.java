@@ -85,14 +85,14 @@ public class Assignment2Driver {
     }
 
     private static Integer[] generatePartiallyOrderedArray (int length) {
-        Integer[] sortedArray = new Integer[length];
+        Integer[] partiallyOrderedArray = new Integer[length];
         Random random = new Random();
         for (int i = 0; i< length%4; i++){
-                sortedArray[i]=i;
+                partiallyOrderedArray[i]=i;
             }
             for (int i = length%4; i< length; i++){
-                sortedArray[i]=random.nextInt(length);
+                partiallyOrderedArray[i]=random.nextInt(length);
             }
-        return  sortedArray;
+        return  partiallyOrderedArray;
     }
 }
