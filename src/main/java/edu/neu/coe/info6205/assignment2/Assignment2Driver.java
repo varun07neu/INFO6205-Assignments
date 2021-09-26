@@ -21,9 +21,9 @@ public class Assignment2Driver {
     private static  Config config;
     private static  int N = 500;
     public static void main(String[] args) {
-        int choice = 4;
+        int choice = 1;
         if(choice == 1){
-            for(int i = 0; i < 5; i ++){
+            for(int i = 0; i < 6; i ++){
                 Helper<Integer> helper = new BaseHelper<>("insertion sort", N, config);
                 Supplier<Integer[]> supplier = () -> helper.random(Integer.class, Random::nextInt);
                 Assignment2Driver.benchmarkTarget(helper, supplier, i, "random");
