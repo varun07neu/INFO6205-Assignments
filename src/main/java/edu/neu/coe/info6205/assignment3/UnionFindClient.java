@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class UnionFindClient {
     public static void main (String[] args){
-        int n = 5000;
+        int n = 100000;
         int connections = count(n);
-        System.out.println("Connections are "+connections);
+        System.out.println("n value: "+n+" and pairs generated are "+connections);
     }
 
     public static int count (int n){
