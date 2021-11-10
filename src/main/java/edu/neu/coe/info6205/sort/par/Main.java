@@ -18,25 +18,28 @@ public class Main {
 
     public static void main(String[] args) {
         processArgs(args);
-        System.out.println("Degree of parallelism: " + ForkJoinPool.getCommonPoolParallelism());
+        ForkJoinPool fjp = new ForkJoinPool(32);
+        System.out.println("Thread count "+fjp.getParallelism());
         Random random = new Random();
-        int[] array = new int[2000000];
+        int[] array = new int[11_400_000];
+        //11_400_000, 200_000 - potential value for parallel sort
+        //55_000, 1000 - sys sort is faster
         ArrayList<Long> timeList = new ArrayList<>();
         for (int j = 50; j < 100; j++) {
-            ParSort.cutoff = 10000 * (j + 1);
+            ParSort.cutoff = 180_000 * (j + 1);
             // for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
             long time;
             long startTime = System.currentTimeMillis();
-            for (int t = 0; t < 10; t++) {
+            for (int t = 0; t < 1; t++) {
                 for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
-                ParSort.sort(array, 0, array.length);
+                ParSort.sort(array, 0, array.length, fjp);
             }
             long endTime = System.currentTimeMillis();
             time = (endTime - startTime);
             timeList.add(time);
 
 
-            System.out.println("cutoff：" + (ParSort.cutoff) + "\t\t10times Time:" + time + "ms");
+            System.out.println("ArraySize: "+array.length+" Cutoff：" + (ParSort.cutoff) + "\t\t Time:" + time + "ms");
 
         }
         try {
